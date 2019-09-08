@@ -16,11 +16,9 @@ import offer.interview.com.litedoordash.viewmodel.RestaurantViewModel
 
 class RestaurantListFragment : Fragment() {
 
-    lateinit var vm: RestaurantViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        vm = activity?.let { ViewModelProviders.of(it).get(RestaurantViewModel::class.java) }!!
+        val vm = activity?.let { ViewModelProviders.of(it).get(RestaurantViewModel::class.java) }!!
         vm.restaurantsLiveData.observe(this, Observer<ArrayList<Restaurant>> { restaurants ->
             when (list.adapter) {
                 null -> {
