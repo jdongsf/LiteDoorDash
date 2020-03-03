@@ -11,7 +11,6 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.container, RestaurantListFragment(), "list")
-                .addToBackStack(null)
                 .commit()
     }
 

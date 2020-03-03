@@ -1,14 +1,15 @@
 package offer.interview.com.litedoordash
 
+import android.content.Context.MODE_PRIVATE
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_list.*
 import offer.interview.com.litedoordash.adapter.RestaurantAdapter
 import offer.interview.com.litedoordash.data.Restaurant
@@ -23,17 +24,17 @@ class RestaurantListFragment : Fragment() {
             when (list.adapter) {
                 null -> {
                     progress.visibility = View.GONE
-                    val preferences = activity?.getSharedPreferences("doordash",0)
-                    list.adapter = RestaurantAdapter(restaurants,
+//                    activity?.getSharedPreferences("restaurant", MODE_PRIVATE)
+                    list.adapter = RestaurantAdapter(restaurants.toMutableList(),
                             { index -> vm.loadMoreRestaurants(index) },
-                            { index ->
+                            { restaurant ->
                                 activity?.supportFragmentManager
                                         ?.beginTransaction()
-                                        ?.add(R.id.container,RestaurantDetailFragment.newInstance(vm.getRestaurant(index)), "detail")
+                                        ?.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                                        ?.add(R.id.container, RestaurantDetailFragment.newInstance(restaurant), "detail")
                                         ?.addToBackStack(null)
                                         ?.commit()
                             })
-                    list.layoutManager = LinearLayoutManager(context)
                 }
                 is RestaurantAdapter -> {
                     val adapter = list.adapter as RestaurantAdapter

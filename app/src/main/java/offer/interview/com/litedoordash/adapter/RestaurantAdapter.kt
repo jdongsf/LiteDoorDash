@@ -10,9 +10,10 @@ import com.bumptech.glide.Glide
 import offer.interview.com.litedoordash.R
 import offer.interview.com.litedoordash.data.Restaurant
 
-class RestaurantAdapter(internal var restaurants: ArrayList<Restaurant>,
+class RestaurantAdapter(internal var restaurants: MutableList<Restaurant>,
                         private val loadMore: (Int) -> Unit,
-                        private val onClick: (Int) -> Unit) : RecyclerView.Adapter<RestaurantAdapter.ViewHolder>() {
+                        private val onClick: (Restaurant) -> Unit) :
+        RecyclerView.Adapter<RestaurantAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.name.text = restaurants[position].name
@@ -21,9 +22,9 @@ class RestaurantAdapter(internal var restaurants: ArrayList<Restaurant>,
         Glide.with(holder.coverImg.context).load(restaurants[position].cover_img_url).into(holder.coverImg)
 
         // endless scrolling
-//        if (position == itemCount - 1) {
-//            loadMore.invoke(itemCount)
-//        }
+        if (position == itemCount - 1) {
+            loadMore.invoke(itemCount)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -35,7 +36,7 @@ class RestaurantAdapter(internal var restaurants: ArrayList<Restaurant>,
         return ViewHolder(v, onClick)
     }
 
-    class ViewHolder(itemView: View, onClick: (Int) -> Unit) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View, onClick: (Restaurant) -> Unit) : RecyclerView.ViewHolder(itemView) {
         val name: TextView = itemView.findViewById(R.id.name)
         val status: TextView = itemView.findViewById(R.id.status)
         val coverImg: ImageView = itemView.findViewById(R.id.cover_img)
@@ -43,7 +44,7 @@ class RestaurantAdapter(internal var restaurants: ArrayList<Restaurant>,
 
         init {
             itemView.setOnClickListener {
-                onClick.invoke(adapterPosition)
+                onClick.invoke(restaurants[adapterPosition])
             }
         }
     }

@@ -12,9 +12,9 @@ import offer.interview.com.litedoordash.data.Restaurant
 class RestaurantDetailFragment : Fragment() {
 
     companion object {
-        private const val TAG = "restaurant"
+        private const val TAG = "RestaurantDetailFragment"
         @JvmStatic
-        fun newInstance(restaurant: Restaurant?) = RestaurantDetailFragment().apply {
+        fun newInstance(restaurant: Restaurant) = RestaurantDetailFragment().apply {
             arguments = Bundle().apply {
                 putParcelable(TAG, restaurant)
             }

@@ -38,9 +38,6 @@ class RestaurantViewModel : ViewModel() {
         }
     }
 
-    fun getRestaurant(index : Int): Restaurant? {
-        return restaurantsLiveData.value?.get(index)
-    }
     override fun onCleared() {
         super.onCleared()
         scope.cancel()
