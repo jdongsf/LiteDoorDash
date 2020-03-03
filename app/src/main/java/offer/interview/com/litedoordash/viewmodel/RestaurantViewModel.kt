@@ -27,7 +27,7 @@ class RestaurantViewModel : androidx.lifecycle.ViewModel() {
                     restaurantsLiveData.value = restaurants as ArrayList<Restaurant>
                 }
             } catch (e: Throwable) {
-                Log.e(RestaurantViewModel::class.simpleName, e.message.toString());
+                Log.e(RestaurantViewModel::class.simpleName, e.message.toString())
             }
         }
     }
@@ -40,13 +40,13 @@ class RestaurantViewModel : androidx.lifecycle.ViewModel() {
                     restaurantsLiveData.value = moreRestaurants as ArrayList<Restaurant>
                 }
             } catch (e: Throwable) {
-                Log.e(RestaurantViewModel::class.simpleName, e.message.toString());
+                Log.e(RestaurantViewModel::class.simpleName, e.message.toString())
             }
         }
     }
 
     override fun onCleared() {
         super.onCleared()
-        scope.coroutineContext.cancel();
+        scope.coroutineContext.cancel()
     }
 }
