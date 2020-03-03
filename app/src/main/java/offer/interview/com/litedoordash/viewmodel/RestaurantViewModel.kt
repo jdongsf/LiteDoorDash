@@ -12,7 +12,7 @@ import offer.interview.com.litedoordash.util.AppConstants.LNG
 class RestaurantViewModel : androidx.lifecycle.ViewModel() {
 
     val scope by lazy {
-        CoroutineScope(Job() + Dispatchers.Default)
+        CoroutineScope(Job() + Dispatchers.IO)
     }
 
     val restaurantsLiveData: MutableLiveData<ArrayList<Restaurant>> by lazy {
@@ -27,12 +27,12 @@ class RestaurantViewModel : androidx.lifecycle.ViewModel() {
                     restaurantsLiveData.value = restaurants as ArrayList<Restaurant>
                 }
             } catch (e: Throwable) {
-                Log.e(RestaurantViewModel::class.simpleName, e.localizedMessage);
+                Log.e(RestaurantViewModel::class.simpleName, e.message.toString());
             }
         }
     }
 
-    fun loadMoreRestaurants(offSet:Int) {
+    fun loadMoreRestaurants(offSet: Int) {
         scope.launch {
             try {
                 val moreRestaurants = Repository.restaurantApi.getRestaurants(LAT, LNG, offSet, LIMIT)
@@ -40,7 +40,7 @@ class RestaurantViewModel : androidx.lifecycle.ViewModel() {
                     restaurantsLiveData.value = moreRestaurants as ArrayList<Restaurant>
                 }
             } catch (e: Throwable) {
-                Log.e(RestaurantViewModel::class.simpleName, e.localizedMessage);
+                Log.e(RestaurantViewModel::class.simpleName, e.message.toString());
             }
         }
     }
@@ -50,5 +50,3 @@ class RestaurantViewModel : androidx.lifecycle.ViewModel() {
         scope.coroutineContext.cancel();
     }
 }
-
-

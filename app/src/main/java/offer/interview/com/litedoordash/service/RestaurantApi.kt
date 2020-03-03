@@ -11,7 +11,7 @@ interface RestaurantApi {
 
     @GET("restaurant/")
     suspend fun getRestaurants(@Query("lat") lat: String = LAT,
-                       @Query("lng") lng: String = LNG,
-                       @Query("offset") offset: Int = 0,
-                       @Query("limit") limit: Int = LIMIT): List<Restaurant>
+                               @Query("lng") lng: String = LNG,
+                               @Query("offset") offset: Int = 0,
+                               @Query("limit") limit: Int = LIMIT): List<Restaurant>
 }

@@ -23,7 +23,8 @@ class RestaurantListFragment : Fragment() {
             when (list.adapter) {
                 null -> {
                     progress.visibility = View.GONE
-                    list.adapter = RestaurantAdapter(restaurants, vm)
+                    list.adapter = RestaurantAdapter(restaurants,
+                            {index -> vm.loadMoreRestaurants(index)})
                     list.layoutManager = LinearLayoutManager(context)
                 }
                 is RestaurantAdapter -> {
