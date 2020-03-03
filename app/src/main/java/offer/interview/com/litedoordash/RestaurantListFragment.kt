@@ -23,8 +23,16 @@ class RestaurantListFragment : Fragment() {
             when (list.adapter) {
                 null -> {
                     progress.visibility = View.GONE
+                    val preferences = activity?.getSharedPreferences("doordash",0)
                     list.adapter = RestaurantAdapter(restaurants,
-                            {index -> vm.loadMoreRestaurants(index)})
+                            { index -> vm.loadMoreRestaurants(index) },
+                            { index ->
+                                activity?.supportFragmentManager
+                                        ?.beginTransaction()
+                                        ?.add(R.id.container,RestaurantDetailFragment.newInstance(vm.getRestaurant(index)), "detail")
+                                        ?.addToBackStack(null)
+                                        ?.commit()
+                            })
                     list.layoutManager = LinearLayoutManager(context)
                 }
                 is RestaurantAdapter -> {
@@ -37,6 +45,7 @@ class RestaurantListFragment : Fragment() {
                 }
             }
         })
+
         vm.fetchRestaurants()
     }
 

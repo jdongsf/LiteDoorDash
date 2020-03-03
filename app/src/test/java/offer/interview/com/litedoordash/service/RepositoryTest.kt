@@ -20,7 +20,7 @@ class RepositoryTest {
     fun coverImg_isNonNull() {
         runBlocking {
             val restaurantList = Repository.restaurantApi.getRestaurants()
-            val restaurant = restaurantList.get(0)
+            val restaurant = restaurantList[0]
             assertNotNull(restaurant.cover_img_url)
         }
     }
@@ -29,7 +29,7 @@ class RepositoryTest {
     fun name_isNonNull() {
         runBlocking {
             val restaurantList = Repository.restaurantApi.getRestaurants()
-            val restaurant = restaurantList.get(0)
+            val restaurant = restaurantList[0]
             assertNotNull(restaurant.name)
         }
     }
@@ -38,7 +38,7 @@ class RepositoryTest {
     fun id_isNonZero() {
         runBlocking {
             val restaurantList = Repository.restaurantApi.getRestaurants()
-            val restaurant = restaurantList.get(0)
+            val restaurant = restaurantList[0]
             assertNotSame(restaurant.id, 0)
         }
     }
@@ -47,7 +47,7 @@ class RepositoryTest {
     fun delivery_fee_isNonNull() {
         runBlocking {
             val restaurantList = Repository.restaurantApi.getRestaurants()
-            val restaurant = restaurantList.get(0)
+            val restaurant = restaurantList[0]
             assertNotNull(restaurant.delivery_fee)
         }
     }
@@ -56,7 +56,7 @@ class RepositoryTest {
     fun status_isNonNull() {
         runBlocking {
             val restaurantList = Repository.restaurantApi.getRestaurants()
-            val restaurant = restaurantList.get(0)
+            val restaurant = restaurantList[0]
             assertNotNull(restaurant.status)
         }
     }
@@ -65,7 +65,7 @@ class RepositoryTest {
     fun description_isNonNull() {
         runBlocking {
             val restaurantList = Repository.restaurantApi.getRestaurants()
-            val restaurant = restaurantList.get(0)
+            val restaurant = restaurantList[0]
             assertNotNull(restaurant.description)
         }
     }
