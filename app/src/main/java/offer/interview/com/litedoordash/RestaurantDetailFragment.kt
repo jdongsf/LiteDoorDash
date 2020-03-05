@@ -2,6 +2,7 @@ package offer.interview.com.litedoordash
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -32,6 +33,10 @@ class RestaurantDetailFragment : Fragment() {
         status.text = restaurant?.status
         description.hint = restaurant?.description
         context?.let { Glide.with(it).load(restaurant?.cover_img_url).into(cover_img) }
+        restaurant?.menus?.forEach { items ->
+            items.popular_items.forEach { dish ->
+                println(dish.toString())
+            }
+        }
     }
-
 }

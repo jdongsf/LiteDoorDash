@@ -24,16 +24,18 @@ class RestaurantListFragment : Fragment() {
             when (list.adapter) {
                 null -> {
                     progress.visibility = View.GONE
-//                    activity?.getSharedPreferences("restaurant", MODE_PRIVATE)
+//                    val preferences = activity?.getSharedPreferences("restaurant", MODE_PRIVATE)
                     list.adapter = RestaurantAdapter(restaurants.toMutableList(),
                             { index -> vm.loadMoreRestaurants(index) },
                             { restaurant ->
-                                activity?.supportFragmentManager
-                                        ?.beginTransaction()
-                                        ?.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                                        ?.add(R.id.container, RestaurantDetailFragment.newInstance(restaurant), "detail")
-                                        ?.addToBackStack(null)
-                                        ?.commit()
+                                if (activity?.supportFragmentManager?.findFragmentByTag("detail") == null) {
+                                    activity?.supportFragmentManager
+                                            ?.beginTransaction()
+                                            ?.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                                            ?.add(R.id.container, RestaurantDetailFragment.newInstance(restaurant), "detail")
+                                            ?.addToBackStack(null)
+                                            ?.commit()
+                                }
                             })
                 }
                 is RestaurantAdapter -> {

@@ -10,5 +10,6 @@ data class Restaurant(
         val name: String,
         val status: String,
         val description: String,
-        val cover_img_url: String
+        val cover_img_url: String,
+        val menus: List<Items>
 ) : Parcelable
