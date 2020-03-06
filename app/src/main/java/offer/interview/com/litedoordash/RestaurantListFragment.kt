@@ -1,6 +1,5 @@
 package offer.interview.com.litedoordash
 
-import android.content.Context.MODE_PRIVATE
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -24,8 +23,7 @@ class RestaurantListFragment : Fragment() {
             when (list.adapter) {
                 null -> {
                     progress.visibility = View.GONE
-//                    val preferences = activity?.getSharedPreferences("restaurant", MODE_PRIVATE)
-                    list.adapter = RestaurantAdapter(restaurants.toMutableList(),
+                    list.adapter = RestaurantAdapter(restaurants,
                             { index -> vm.loadMoreRestaurants(index) },
                             { restaurant ->
                                 if (activity?.supportFragmentManager?.findFragmentByTag("detail") == null) {

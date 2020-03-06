@@ -5,6 +5,7 @@ import offer.interview.com.litedoordash.util.AppConstants.LAT
 import offer.interview.com.litedoordash.util.AppConstants.LIMIT
 import offer.interview.com.litedoordash.util.AppConstants.LNG
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.Query
 
 interface RestaurantApi {

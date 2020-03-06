@@ -1,7 +1,10 @@
 package offer.interview.com.litedoordash
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import offer.interview.com.litedoordash.data.Restaurant
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,4 +17,11 @@ class MainActivity : AppCompatActivity() {
                 .commit()
     }
 
+    companion object {
+        @JvmStatic
+        fun startActivity(context: Context) {
+            val intent = Intent(context, MainActivity::class.java)
+            context.startActivity(intent)
+        }
+    }
 }

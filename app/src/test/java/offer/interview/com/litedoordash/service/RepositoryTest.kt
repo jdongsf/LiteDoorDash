@@ -12,7 +12,7 @@ class RepositoryTest {
     fun count_isCorrect() {
         runBlocking {
             val restaurantList = Repository.restaurantApi.getRestaurants()
-            assertEquals(restaurantList.size, 48)
+            assertEquals(restaurantList.size, 49)
         }
     }
 
